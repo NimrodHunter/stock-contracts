@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/ERC223BasicToken.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> ERC223BasicToken.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>6/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/3</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">72.73% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>8/11</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity 0.4.21;
+&nbsp;
+import "zeppelin-solidity/contracts/token/ERC20/BasicToken.sol";
+&nbsp;
+import './ERC223Basic.sol';
+import './ERC223ReceivingContract.sol';
+&nbsp;
+&nbsp;
+/**
+ * @title ERC223 standard token implementation.
+ */
+contract ERC223BasicToken is ERC223Basic, BasicToken {
+<span class="fstat-no" title="function not covered" >    function() publi</span>c {
+        //if ether is sent to this address, send it back.
+<span class="cstat-no" title="statement not covered" >        revert()</span>;
+    }
+    
+    /**
+     * @dev Transfer the specified amount of tokens to the specified address.
+     *      Invokes the `tokenFallback` function if the recipient is a contract.
+     *      The token transfer fails if the recipient is a contract
+     *      but does not implement the `tokenFallback` function
+     *      or the fallback function to receive funds.
+     *
+     * @param _to    Receiver address.
+     * @param _value Amount of tokens that will be transferred.
+     * @param _data  Transaction metadata.
+     */
+    function transfer(address _to, uint _value, bytes _data) public returns (bool) {
+        // Standard function transfer similar to ERC20 transfer with no _data .
+        // Added due to backwards compatibility reasons .
+        uint codeLength;
+        assembly {
+            // Retrieve the size of the code on target address, this needs assembly .
+            codeLength := extcodesize(_to)
+        }
+        require(super.transfer(_to, _value));
+        <span class="missing-if-branch" title="if path not taken" >I</span>if(codeLength&gt;0) {
+<span class="cstat-no" title="statement not covered" >            ERC223ReceivingContract receiver = ERC223ReceivingContract(_to)</span>;
+            receiver.tokenFallback(msg.sender, _value, _data);
+        }
+        emit Transfer(msg.sender, _to, _value, _data);
+        return true;
+    }
+&nbsp;
+    /**
+     * @dev Transfer the specified amount of tokens to the specified address.
+     *      Invokes the `tokenFallback` function if the recipient is a contract.
+     *      The token transfer fails if the recipient is a contract
+     *      but does not implement the `tokenFallback` function
+     *      or the fallback function to receive funds.
+     *
+     * @param _to    Receiver address.
+     * @param _value Amount of tokens that will be transferred.
+     */
+    function transfer(address _to, uint256 _value) public returns (bool) {
+        bytes memory empty;
+        require(transfer(_to, _value, empty));
+        return true;
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Apr 16 2018 19:39:51 GMT-0300 (-03)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "compile": "./node_modules/.bin/truffle compile",
+    "test": "./node_modules/.bin/truffle test",
+    "migrate": "./node_modules/.bin/truffle migrate --network in_memory",
+    "deploy-rinkeby": "./node_modules/.bin/truffle migrate --network rinkeby",
+    "deploy-ropsten": "./node_modules/.bin/truffle migrate --network ropsten",
+    "coverage": "solidity-coverage"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "ganache-cli": "^6.1.0",
+    "solidity-coverage": "^0.4.15",
+    "truffle": "4.1.6",
+    "truffle-hdwallet-provider": "^0.0.3",
+    "truffle-provider": "^0.0.4"
+  },
+  "dependencies": {
+    "zeppelin-solidity": "^1.8.0"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
+}
