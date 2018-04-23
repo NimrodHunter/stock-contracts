@@ -43,6 +43,10 @@ contract Stock is Ownable, ERC223ReceivingContract {
             require(StockToken(msg.sender).burn(_from, _value));
             require(fiatToken.transfer(_from, (balances[msg.sender]*_value)/shareholdersNumber));
             require(StockToken(nextToken[msg.sender]).mint(_from, _value));
+            if (StockToken(msg.sender).totalSupply() == 0 && balances[msg.sender] > 0) {
+                balances[nextToken[msg.sender]] = balances[nextToken[msg.sender]].add(balances[msg.sender]);
+                balances[msg.sender] = 0;
+            }
         }
     }
         
@@ -56,5 +60,12 @@ contract Stock is Ownable, ERC223ReceivingContract {
             tokens[currentPeriod] = currentToken;
             StockToken(currentToken).begun(revenueFrame);
         }   
+    }
+
+    function withdraw(uint256 _amount) public onlyOwner {
+        changePeriod();
+        require(_amount <= balances[tokens[currentPeriod]]);
+        balances[tokens[currentPeriod]] = balances[tokens[currentPeriod]].sub(_amount);
+        require(fiatToken.transfer(msg.sender, _amount));
     }
 }
