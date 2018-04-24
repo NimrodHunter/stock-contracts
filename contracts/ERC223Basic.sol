@@ -15,7 +15,7 @@ contract ERC223Basic is ERC20Basic {
       * @param _value Amount of tokens that will be transferred.
       * @param _data  Transaction metadata.
       */
-    event Transfer(address indexed _from, address indexed _to, uint256 indexed _value, bytes _data);
+    event Transfer(address indexed _from, address indexed _to, uint256 _value, bytes _data);
 
     /**
       * @dev Transfer the specified amount of tokens to the specified address.

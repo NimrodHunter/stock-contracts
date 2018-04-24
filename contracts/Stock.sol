@@ -9,21 +9,19 @@ import "./StockToken.sol";
 contract Stock is Ownable, ERC223ReceivingContract {
     using SafeMath for uint256;
 
-    mapping(uint256 => address) tokens;
-    mapping(address => uint256) balances;
-    mapping(address => address) nextToken;
-    mapping(address => bool) isToken;
+    mapping(uint256 => address) public tokens;
+    mapping(address => uint256) public balances;
+    mapping(address => address) public nextToken;
+    mapping(address => bool) public isToken;
     
-    uint256 currentPeriod;
-    uint256 revenueFrame;
-    uint256 shareholdersNumber;
+    uint256 public currentPeriod;
+    uint256 public revenueFrame;
+    uint256 public sharesNumber;
     
     ERC223BasicToken fiatToken;
-    
-   
 
-    function Stock(address _fiatToken, address _stock, uint256 _revenueFrame, uint256 _shareholdersNumber) public {
-        shareholdersNumber = _shareholdersNumber;
+    function Stock(address _fiatToken, address _stock, uint256 _revenueFrame, uint256 _sharesNumber) public {
+        sharesNumber = _sharesNumber;
         fiatToken = ERC223BasicToken(_fiatToken);
         revenueFrame = _revenueFrame;
         currentPeriod =  block.timestamp;
@@ -40,14 +38,21 @@ contract Stock is Ownable, ERC223ReceivingContract {
         if (msg.sender == address(fiatToken)) {
             balances[tokens[currentPeriod]] = balances[tokens[currentPeriod]].add(_value);
         } else {
-            require(StockToken(msg.sender).burn(_from, _value));
-            require(fiatToken.transfer(_from, (balances[msg.sender]*_value)/shareholdersNumber));
+            require(StockToken(msg.sender).burn(address(this), _value));
+            require(fiatToken.transfer(_from, (balances[msg.sender]*_value)/sharesNumber));
             require(StockToken(nextToken[msg.sender]).mint(_from, _value));
             if (StockToken(msg.sender).totalSupply() == 0 && balances[msg.sender] > 0) {
                 balances[nextToken[msg.sender]] = balances[nextToken[msg.sender]].add(balances[msg.sender]);
                 balances[msg.sender] = 0;
-            }
+            } 
         }
+    }
+
+    function withdraw(uint256 _amount) public onlyOwner {
+        changePeriod();
+        require(_amount <= balances[tokens[currentPeriod]]);
+        balances[tokens[currentPeriod]] = balances[tokens[currentPeriod]].sub(_amount);
+        require(fiatToken.transfer(msg.sender, _amount));
     }
         
     function changePeriod() public {
@@ -61,11 +66,5 @@ contract Stock is Ownable, ERC223ReceivingContract {
             StockToken(currentToken).begun(revenueFrame);
         }   
     }
-
-    function withdraw(uint256 _amount) public onlyOwner {
-        changePeriod();
-        require(_amount <= balances[tokens[currentPeriod]]);
-        balances[tokens[currentPeriod]] = balances[tokens[currentPeriod]].sub(_amount);
-        require(fiatToken.transfer(msg.sender, _amount));
-    }
+ 
 }
