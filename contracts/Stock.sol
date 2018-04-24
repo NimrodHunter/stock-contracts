@@ -32,9 +32,8 @@ contract Stock is Ownable, ERC223ReceivingContract {
         isToken[nextStock] = true;
     }
 
-    function tokenFallback(address _from, uint _value, bytes _data) public {
+    function tokenFallback(address _from, uint _value, bytes _data) public updatePeriod {
         require(msg.sender == address(fiatToken) || isToken[msg.sender]);
-        changePeriod();
         if (msg.sender == address(fiatToken)) {
             balances[tokens[currentPeriod]] = balances[tokens[currentPeriod]].add(_value);
         } else {
@@ -48,8 +47,7 @@ contract Stock is Ownable, ERC223ReceivingContract {
         }
     }
 
-    function withdraw(uint256 _amount) public onlyOwner {
-        changePeriod();
+    function withdraw(uint256 _amount) public onlyOwner updatePeriod {
         require(_amount <= balances[tokens[currentPeriod]]);
         balances[tokens[currentPeriod]] = balances[tokens[currentPeriod]].sub(_amount);
         require(fiatToken.transfer(msg.sender, _amount));
@@ -65,6 +63,11 @@ contract Stock is Ownable, ERC223ReceivingContract {
             tokens[currentPeriod] = currentToken;
             StockToken(currentToken).begun(revenueFrame);
         }   
+    }
+
+    modifier updatePeriod() {
+        changePeriod();
+        _;
     }
  
 }
