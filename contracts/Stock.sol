@@ -38,7 +38,7 @@ contract Stock is Ownable, ERC223ReceivingContract {
             balances[tokens[currentPeriod]] = balances[tokens[currentPeriod]].add(_value);
         } else {
             require(StockToken(msg.sender).burn(address(this), _value));
-            require(fiatToken.transfer(_from, (balances[msg.sender]*_value)/sharesNumber));
+            require(fiatToken.transfer(_from, balances[msg.sender].mul(_value).div(sharesNumber)));
             require(StockToken(nextToken[msg.sender]).mint(_from, _value));
             if (StockToken(msg.sender).totalSupply() == 0 && balances[msg.sender] > 0) {
                 balances[nextToken[msg.sender]] = balances[nextToken[msg.sender]].add(balances[msg.sender]);

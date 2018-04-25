@@ -70,7 +70,6 @@ contract('Stock Behavior', (accounts) => {
     assert(newTokenBalance, sharesAmount);
     const fiatBalance = await fiatToken.balanceOf(shareHolderOne);
     assert(fiatBalance, sharesAmount);
-  
   });
 
 
