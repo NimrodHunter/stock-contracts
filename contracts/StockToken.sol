@@ -1,10 +1,10 @@
-pragma solidity 0.4.21;
+pragma solidity ^0.4.23;
 
 import "./MintableToken.sol";
 import "./BurnableToken.sol";
-import "./ERC223BasicToken.sol";
+import "@acatalan/erc223-20-contracts/contracts/ERC223BasicToken.sol";
 
-import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /// @title StockToken that uses MintableToken, BurnableToken and ERC223BasicToken.
 contract StockToken is Ownable, MintableToken, BurnableToken, ERC223BasicToken {
@@ -17,7 +17,7 @@ contract StockToken is Ownable, MintableToken, BurnableToken, ERC223BasicToken {
     }
 
     function burn(address _who, uint256 _value) public onlyOwner returns (bool) {
-        require(block.timestamp > start.add(revenueFrame));
+        require(block.timestamp > start.add(revenueFrame), "it isn't the right period");
         super.burn(_who, _value);
         return true;
     }
