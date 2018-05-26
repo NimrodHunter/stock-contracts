@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@acatalan/erc223-20-contracts@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@acatalan/erc223-20-contracts/-/erc223-20-contracts-0.0.1.tgz#f8c52530551e85eb790b797db144a2599295975b"
+"@acatalan/erc223-20-contracts@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@acatalan/erc223-20-contracts/-/erc223-20-contracts-0.0.2.tgz#bba557400174acebbc4f59164c45e277f7d68f8e"
   dependencies:
     openzeppelin-solidity "^1.9.0"
 
@@ -43,7 +43,7 @@ ajv@^4.9.1:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
 
-ajv@^5.1.0:
+ajv@^5.1.0, ajv@^5.1.1:
   version "5.5.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
   dependencies:
@@ -193,6 +193,12 @@ async@^2.0.1, async@^2.1.2, async@^2.4.0, async@^2.6.0:
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
   dependencies:
     lodash "^4.14.0"
+
+async@^2.1.4:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
+  dependencies:
+    lodash "^4.17.10"
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -926,6 +932,10 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
+bn.js@4.11.6:
+  version "4.11.6"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.6.tgz#53344adb14617a13f6e8dd2ce28905d1c0ba3215"
+
 bn.js@^4.11.0, bn.js@^4.11.3, bn.js@^4.4.0, bn.js@^4.8.0:
   version "4.11.8"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
@@ -1344,6 +1354,10 @@ crypto-js@^3.1.4:
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.1.8.tgz#715f070bf6014f2ae992a98b3929258b713f08d5"
 
+crypto-js@^3.1.9-1:
+  version "3.1.9-1"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.1.9-1.tgz#fda19e761fc077e01ffbfdc6e9fdfc59e8806cd8"
+
 dargs@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/dargs/-/dargs-5.1.0.tgz#ec7ea50c78564cd36c9d5ec18f66329fade27829"
@@ -1699,6 +1713,14 @@ ethereumjs-wallet@^0.6.0:
     scrypt.js "^0.2.0"
     utf8 "^2.1.1"
     uuid "^2.0.1"
+
+ethjs-abi@0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/ethjs-abi/-/ethjs-abi-0.1.8.tgz#cd288583ed628cdfadaf8adefa3ba1dbcbca6c18"
+  dependencies:
+    bn.js "4.11.6"
+    js-sha3 "0.5.5"
+    number-to-bn "1.7.0"
 
 ethjs-util@^0.1.3:
   version "0.1.4"
@@ -2639,6 +2661,10 @@ jade@0.26.3:
     commander "0.6.1"
     mkdirp "0.3.0"
 
+js-sha3@0.5.5:
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.5.5.tgz#baf0c0e8c54ad5903447df96ade7a4a1bca79a4a"
+
 js-sha3@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.3.1.tgz#86122802142f0828502a0d1dee1d95e253bb0243"
@@ -2996,6 +3022,10 @@ lodash.keys@^3.0.0:
 lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
+
+lodash@^4.17.10:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
 log-symbols@^1.0.2:
   version "1.0.2"
@@ -3369,6 +3399,13 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
+number-to-bn@1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/number-to-bn/-/number-to-bn-1.7.0.tgz#bb3623592f7e5f9e0030b1977bd41a0c53fe1ea0"
+  dependencies:
+    bn.js "4.11.6"
+    strip-hex-prefix "1.0.0"
+
 oauth-sign@~0.8.1, oauth-sign@~0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
@@ -3443,7 +3480,7 @@ ora@^0.2.3:
     cli-spinners "^0.1.2"
     object-assign "^4.0.1"
 
-original-require@^1.0.1:
+original-require@^1.0.0, original-require@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/original-require/-/original-require-1.0.1.tgz#0f130471584cd33511c5ec38c8d59213f9ac5e20"
 
@@ -4160,7 +4197,7 @@ semaphore@>=1.0.1, semaphore@^1.0.3:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/semaphore/-/semaphore-1.1.0.tgz#aaad8b86b20fe8e9b32b16dc2ee682a8cd26a8aa"
 
-"semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@^5.5.0:
+"semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
@@ -4288,6 +4325,14 @@ solidity-coverage@^0.4.15:
 solidity-parser-sc@0.4.7:
   version "0.4.7"
   resolved "https://registry.yarnpkg.com/solidity-parser-sc/-/solidity-parser-sc-0.4.7.tgz#047a9e83684657992b6d4d35d04ea32070e1bee8"
+  dependencies:
+    mocha "^2.4.5"
+    pegjs "^0.10.0"
+    yargs "^4.6.0"
+
+solidity-parser@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/solidity-parser/-/solidity-parser-0.4.0.tgz#a343f13da73c91683279034680e80c491de340fa"
   dependencies:
     mocha "^2.4.5"
     pegjs "^0.10.0"
@@ -4604,9 +4649,56 @@ trim@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/trim/-/trim-0.0.1.tgz#5858547f6b290757ee95cccc666fb50084c460dd"
 
-truffle-error@^0.0.2:
+truffle-blockchain-utils@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/truffle-blockchain-utils/-/truffle-blockchain-utils-0.0.4.tgz#e31a346db61775c80ccd6f632de5e72f97f20ea5"
+
+truffle-config@^1.0.2:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/truffle-config/-/truffle-config-1.0.4.tgz#6f2eaa4203b8248e7e5335163766f913be35b0bf"
+  dependencies:
+    find-up "^2.1.0"
+    lodash "^4.17.4"
+    original-require "^1.0.0"
+    truffle-error "^0.0.2"
+    truffle-provider "^0.0.4"
+
+truffle-contract-schema@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/truffle-contract-schema/-/truffle-contract-schema-2.0.0.tgz#535378c0b6a7f58011ea8d84f57771771cb45163"
+  dependencies:
+    ajv "^5.1.1"
+    crypto-js "^3.1.9-1"
+    debug "^3.1.0"
+
+truffle-contract@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/truffle-contract/-/truffle-contract-3.0.5.tgz#c25d07042dcd519413bfee21034ed6ee7fc373bf"
+  dependencies:
+    ethjs-abi "0.1.8"
+    truffle-blockchain-utils "^0.0.4"
+    truffle-contract-schema "^2.0.0"
+    truffle-error "0.0.2"
+    web3 "^0.20.1"
+
+truffle-error@0.0.2, truffle-error@^0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/truffle-error/-/truffle-error-0.0.2.tgz#01b189b78505566ae1689c239c7ca2dd121cfe4c"
+
+truffle-expect@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/truffle-expect/-/truffle-expect-0.0.3.tgz#9b75cef343bd596e7e5dbc878f5f1b2e318a944c"
+
+truffle-flattener@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/truffle-flattener/-/truffle-flattener-1.2.5.tgz#a2d1fb9262a9d67158e2861319118fab97a3ca62"
+  dependencies:
+    find-up "^2.1.0"
+    semver "^5.4.1"
+    solidity-parser "^0.4.0"
+    truffle-config "^1.0.2"
+    truffle-resolver "^4.0.1"
+    tsort "0.0.1"
 
 truffle-hdwallet-provider@^0.0.3:
   version "0.0.3"
@@ -4624,6 +4716,19 @@ truffle-provider@^0.0.4:
     truffle-error "^0.0.2"
     web3 "^0.20.1"
 
+truffle-provisioner@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/truffle-provisioner/-/truffle-provisioner-0.1.0.tgz#029e5249c1015300738535e04fded931a53c4f62"
+
+truffle-resolver@^4.0.1:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/truffle-resolver/-/truffle-resolver-4.0.3.tgz#3994f43fe0d097a16106ab103375d84b1390983b"
+  dependencies:
+    async "^2.1.4"
+    truffle-contract "^3.0.5"
+    truffle-expect "0.0.3"
+    truffle-provisioner "^0.1.0"
+
 truffle@4.1.8:
   version "4.1.8"
   resolved "https://registry.yarnpkg.com/truffle/-/truffle-4.1.8.tgz#b0b9175e0270145999567a3f0a2337c914a23a9c"
@@ -4631,6 +4736,10 @@ truffle@4.1.8:
     mocha "^3.4.2"
     original-require "^1.0.1"
     solc "0.4.23"
+
+tsort@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/tsort/-/tsort-0.0.1.tgz#e2280f5e817f8bf4275657fd0f9aebd44f5a2786"
 
 tunnel-agent@^0.6.0:
   version "0.6.0"

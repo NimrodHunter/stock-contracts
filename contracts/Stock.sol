@@ -32,18 +32,33 @@ contract Stock is Ownable, ERC223ReceivingContract {
         isToken[nextStock] = true;
     }
 
-    function tokenFallback(address _from, uint _value, bytes _data) public updatePeriod {
+    function tokenFallback(address _from, uint256 _value, bytes _data) public updatePeriod {
         require(msg.sender == address(fiatToken) || isToken[msg.sender]);
         if (msg.sender == address(fiatToken)) {
-            balances[tokens[currentPeriod]] = balances[tokens[currentPeriod]].add(_value);
+            deposit(_value);
         } else {
-            require(StockToken(msg.sender).burn(address(this), _value), "burn error");
-            require(fiatToken.transfer(_from, balances[msg.sender].mul(_value).div(sharesNumber)), "transfer error");
-            require(StockToken(nextToken[msg.sender]).mint(_from, _value), "mint error");
-            if (StockToken(msg.sender).totalSupply() == 0 && balances[msg.sender] > 0) {
-                balances[nextToken[msg.sender]] = balances[nextToken[msg.sender]].add(balances[msg.sender]);
-                balances[msg.sender] = 0;
-            } 
+            claimRevenue(_from, _value, msg.sender);
+            }
+    }
+
+    function claimRevenue(address _from, uint256 _amount, address _stockToken) public updatePeriod {
+        if (msg.sender != _stockToken) {
+            require(StockToken(_stockToken).transferFrom(_from, address(this), _amount), "transfer from fail");
+        }
+        require(StockToken(_stockToken).burn(address(this), _amount), "burn error");
+        require(fiatToken.transfer(_from, balances[_stockToken].mul(_amount).div(sharesNumber)), "transfer error");
+        require(StockToken(nextToken[_stockToken]).mint(_from, _amount), "mint error");
+        if (StockToken(_stockToken).totalSupply() == 0 && balances[_stockToken] > 0) {
+            balances[nextToken[_stockToken]] = balances[nextToken[_stockToken]].add(balances[_stockToken]);
+            balances[_stockToken] = 0;
+        } 
+    }
+
+    function deposit(uint256 _amount) public updatePeriod {
+        require(msg.sender == owner || msg.sender == address(fiatToken), "doesn't have permissions");
+        balances[tokens[currentPeriod]] = balances[tokens[currentPeriod]].add(_amount);
+        if (msg.sender == owner) {
+            require(fiatToken.transferFrom(owner, address(this), _amount), "transfer from fail");
         }
     }
 

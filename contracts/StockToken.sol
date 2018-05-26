@@ -4,7 +4,6 @@ import "./MintableToken.sol";
 import "./BurnableToken.sol";
 import "@acatalan/erc223-20-contracts/contracts/ERC223BasicToken.sol";
 
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /// @title StockToken that uses MintableToken, BurnableToken and ERC223BasicToken.
 contract StockToken is Ownable, MintableToken, BurnableToken, ERC223BasicToken {
