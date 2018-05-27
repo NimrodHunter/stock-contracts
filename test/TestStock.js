@@ -23,9 +23,9 @@ contract('Stock Behavior', (accounts) => {
     await stockToken.mint(shareHolderOne, 20);
     await stockToken.mint(shareHolderTwo, 50);
     await stockToken.mint(shareHolderThree, 30);
-    stock = await Stock.new(fiatToken.address, stockToken.address, period, 100);
-    await stockToken.begun(period);
+    stock = await Stock.new(fiatToken.address, period);
     await stockToken.transferOwnership(stock.address);
+    await stock.begun(stockToken.address);
   });
 
   it('should set the start values properly', async () => {
@@ -35,7 +35,8 @@ contract('Stock Behavior', (accounts) => {
   it('send income to stock', async () => {
     const amount = 40;
     const tx = await fiatToken.transfer(stock.address, amount);
-    const balance = await stock.balances(stockToken.address);
+    const period = await stock.periodByToken(stockToken.address);
+    const balance = await stock.balanceByPeriod(period);
     assert(amount, balance);
   });
 
@@ -44,7 +45,8 @@ contract('Stock Behavior', (accounts) => {
     const withdrawnAmount = 15;
     await fiatToken.transfer(stock.address, incomeAmount);
     await stock.withdraw(withdrawnAmount);
-    const balance = await stock.balances(stockToken.address);
+    const period = await stock.periodByToken(stockToken.address);
+    const balance = await stock.balanceByPeriod(period);
     assert(incomeAmount-withdrawnAmount, balance);
   });
 
