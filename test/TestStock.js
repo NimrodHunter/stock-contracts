@@ -3,7 +3,7 @@ import increaseTime, { duration } from './helpers/increaseTime';
 
 const ExampleToken = artifacts.require('ExampleToken');
 const Stocktoken = artifacts.require('StockToken');
-const Stock = artifacts.require('Stock');
+const Dividend = artifacts.require('Dividend');
 
 contract('Stock Behavior', (accounts) => {
 
@@ -23,9 +23,10 @@ contract('Stock Behavior', (accounts) => {
     await stockToken.mint(shareHolderOne, 20);
     await stockToken.mint(shareHolderTwo, 50);
     await stockToken.mint(shareHolderThree, 30);
-    stock = await Stock.new(fiatToken.address, stockToken.address, period, 100);
-    await stockToken.begun(period);
+    stock = await Dividend.new(fiatToken.address, period);
     await stockToken.transferOwnership(stock.address);
+    await stock.begun(stockToken.address);
+    
   });
 
   it('should set the start values properly', async () => {

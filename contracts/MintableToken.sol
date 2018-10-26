@@ -1,6 +1,6 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
-import "openzeppelin-solidity/contracts/token/ERC20/StandardToken.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /**
@@ -9,7 +9,7 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
  * @dev Issue: * https://github.com/OpenZeppelin/zeppelin-solidity/issues/120
  * Based on code by TokenMarketNet: https://github.com/TokenMarketNet/ico/blob/master/contracts/MintableToken.sol
  */
-contract MintableToken is Ownable, StandardToken {
+contract MintableToken is Ownable, ERC20 {
 
     event Mint(address indexed to, uint256 amount);
 
@@ -21,10 +21,8 @@ contract MintableToken is Ownable, StandardToken {
     */
     
     function mint(address _to, uint256 _amount) onlyOwner public returns (bool) {
-        totalSupply_ = totalSupply_.add(_amount);
-        balances[_to] = balances[_to].add(_amount);
+        _mint(_to, _amount);
         emit Mint(_to, _amount);
-        emit Transfer(address(0), _to, _amount);
         return true;
     }
 

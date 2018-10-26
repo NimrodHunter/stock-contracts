@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.24;
 
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
@@ -6,7 +6,7 @@ import "@acatalan/erc223-20-contracts/contracts/ERC223ReceivingContract.sol";
 import "@acatalan/erc223-20-contracts/contracts/ERC223BasicToken.sol";
 import "./StockToken.sol";
 
-contract Stock is Ownable, ERC223ReceivingContract {
+contract Dividend is Ownable, ERC223ReceivingContract {
     using SafeMath for uint256;
 
     mapping(uint256 => address) public tokens;
@@ -20,16 +20,20 @@ contract Stock is Ownable, ERC223ReceivingContract {
     
     ERC223BasicToken fiatToken;
 
-    constructor(address _fiatToken, address _stock, uint256 _revenueFrame, uint256 _sharesNumber) public {
-        sharesNumber = _sharesNumber;
+    constructor(address _fiatToken, uint256 _revenueFrame) public {
         fiatToken = ERC223BasicToken(_fiatToken);
         revenueFrame = _revenueFrame;
-        currentPeriod =  block.timestamp;
+    }
+
+    function begun(address _stock) public onlyOwner {
+        sharesNumber = ERC223BasicToken(_stock).totalSupply();
+        currentPeriod = block.timestamp;
         tokens[currentPeriod] = _stock;
         isToken[_stock] = true;
         address nextStock = new StockToken();
         nextToken[_stock] = nextStock;
         isToken[nextStock] = true;
+        StockToken(_stock).begun(revenueFrame);
     }
 
     function tokenFallback(address _from, uint256 _value, bytes _data) public updatePeriod {
@@ -55,10 +59,10 @@ contract Stock is Ownable, ERC223ReceivingContract {
     }
 
     function deposit(uint256 _amount) public updatePeriod {
-        require(msg.sender == owner || msg.sender == address(fiatToken), "doesn't have permissions");
+        require(msg.sender == owner() || msg.sender == address(fiatToken), "doesn't have permissions");
         balances[tokens[currentPeriod]] = balances[tokens[currentPeriod]].add(_amount);
-        if (msg.sender == owner) {
-            require(fiatToken.transferFrom(owner, address(this), _amount), "transfer from fail");
+        if (msg.sender == owner()) {
+            require(fiatToken.transferFrom(owner(), address(this), _amount), "transfer from fail");
         }
     }
 
